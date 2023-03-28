@@ -13,10 +13,11 @@ on:
       kernel_source:
         description: "Select the kernel source"
         required: false
-        default: "unifreq"
+        default: "https://github.com/zhangqiang-routon/linux-6.1.y"
         type: choice
         options:
           - unifreq
+          - https://github.com/zhangqiang-routon/linux-6.1.y
       kernel_version:
         description: "Select kernel version"
         required: false
@@ -90,7 +91,7 @@ jobs:
           echo "status=success" >> ${GITHUB_OUTPUT}
 
       - name: Compile the kernel
-        uses: ophub/amlogic-s9xxx-armbian@main
+        uses: zhangqiang-routon/amlogic-s9xxx-armbian@main
         if: ${{ steps.init.outputs.status }} == 'success' && !cancelled()
         with:
           build_target: kernel
